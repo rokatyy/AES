@@ -25,14 +25,15 @@ class AES(BinaryAES):
         | e0 | e4 | e8 | e12|          | e0 | e4 | e8 | e12|   no shift
         | e1 | e5 | e9 | e13|    TO    | e5 | e9 | e13| e1 |   <--- 1 position
         | e2 | e6 | e10| e14|          | e10| e14| e2 | e6 |   <--- 2 positions
-        | e4 | e7 | e11| e15|          | e15| e4 | e7 | e11|   <--- 3 position s
+        | e4 | e7 | e11| e15|          | e15| e4 | e7 | e11|   <--- 3 positions
         """
         for i in range(4):
             state[i * 4:i * 4 + 4] = self.__rotate(state[i * 4:i * 4 + 4], i)
 
     def MixColumn(self, s):
         """
-        Transforms every column of matrix which was made with ShiftRow
+        Transforms every column of matrix which was made with ShiftRow.
+        For example:
         | c0 |    | 02 | 03 | 01 | 01 |  | e0 |
         | c1 | == | 01 | 02 | 03 | 01 |  | e5 |
         | c2 |    | 01 | 01 | 02 | 03 |  | e10|
